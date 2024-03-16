@@ -5,9 +5,8 @@ body{
 .title{
     line-height: 100px;
     flex: none;
-    font-size: 32px;
+    font-size: 40px;
     font-weight: bold;
-
     text-align: center;
     justify-content: center;
 }
@@ -21,8 +20,8 @@ body{
     display: block;
     width: 1200px;
     font-size: 30px;
+    font-weight: bold;
     background-color: #91700e;
-    align-items: center;
     color: white;
 }
 
@@ -34,7 +33,16 @@ body{
 }
 
 p{
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 24px;
     color: black;
+    text-align: justify;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+h4{
+    margin: 5px 10px;
+}
+
+img{
+    margin: 0;
 }
