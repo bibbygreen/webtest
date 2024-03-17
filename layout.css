@@ -47,16 +47,29 @@ img{
     margin: 0;
 }
 
-@media (max-width:1250px){
-    .time_table{
-        height: 500px; 
-        width: 750px;
-    }
+.time_table{
+    height: 500px; 
+    width: 750px;
 }
 
-@media (max-width:1250px){
+@media (max-width:600px){
+    .title{
+        line-height: 100px;
+        flex: none;
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+        justify-content: center;
+    }
+    p{
+        font-size: 20px;
+        color: black;
+        text-align: justify;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
     .time_table{
-        height: 300px; 
-        width: 450px;
+        height: 200px; 
+        width: 300px;
     }
 }
