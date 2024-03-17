@@ -46,3 +46,17 @@ h4{
 img{
     margin: 0;
 }
+
+@media (max-width:1250px){
+    .time_table{
+        height: 500px; 
+        width: 750px;
+    }
+}
+
+@media (max-width:1250px){
+    .time_table{
+        height: 300px; 
+        width: 450px;
+    }
+}
