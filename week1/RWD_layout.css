@@ -40,7 +40,13 @@
     display: block;
 }
 
+li{
+    list-style: none;
+}
 
+.hide{
+    display: none;
+}
 .title{
     height: 250px;
     font-size: 40px;
@@ -48,7 +54,7 @@
     background-color: #ccebff;
     text-align: center;
     line-height: 250px;
-    margin: 0 10px;
+    margin: 0 0;
 }
 .SmallBox{
     display: flex;
@@ -192,14 +198,22 @@
     } 
     .mobile-menu{
         display: block;
-        background-color: aquamarine;
+        /* background-color: aquamarine;
         width: 60%;
-        height: 100vh;
+        height: 100vh; */
         display: flex;
         flex-direction: column;
-        z-index: 10;
 
+    }
+    #menu{
+        background-color: rgb(255, 255, 255);
+        width: 300px;
+        height: 500px; 
+        z-index: 10;
     } 
+    .mobile-menu img{
+        margin: 0 10px;
+    }
     .mobile-menu a{
         font-size: 20px;
         display: block;

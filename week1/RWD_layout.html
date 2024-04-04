@@ -4,32 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./RWD_layout.css">
-    <!-- <script type="text/javascript">
+    <script type="text/javascript">
         function toggleMenu(){
-            var menu=document.getElementById("mobile-menu-open");
-            if(menu.style.display=="block"){
-                menu.style.display="none";
-            }
+            var menu=document.getElementById("menu");
+            menu.classList.toggle("hide");
+            // if(menu.style.display=="block"){
+            //     menu.style.display="none";
+            // }
         }
-    </script> -->
+    </script>
     <title>RWD實作練習</title>
 </head>
 <body>
-    <!-- <input type="checkbox" name="" id="mobile-menu-open"> -->
-    <!-- <div class="navbar">
-
-       
-         <div class="mobile-menu">  
-            <label for="mobile-menu-open"><img class="menu" src="./pic/menu.png" alt="" width="30" height="30"></label>                      
-            <nav>
-                <a href="">Item1</a>
-                <a href="">Item2</a>
-                <a href="">Item3</a>
-                <a href="">Item4</a>
-            </nav>
-
-        <div>
-    </div> -->
     <div class="navbar">
         <div class="headline">MyWebSite</div>
         <div class="desktop-menu">
@@ -39,12 +25,15 @@
             <a href="">Item4</a>
         </div>
         <div class="mobile-menu">
-            <img class="mobile-icon" src="./pic/menu.png" width="30" height="30" alt="">
-            <a href="">Item1</a>
-            <a href="">Item2</a>
-            <a href="">Item3</a>
-            <a href="">Item4</a>
-        </div>
+            <img onclick="toggleMenu();" class="mobile-icon" src="./pic/menu.png" width="30" height="30" alt="">
+            
+            <ul id="menu">
+                <li><a href="">Item1</a></li>
+                <li><a href="">Item2</a></li>
+                <li><a href="">Item3</a></li>
+                <li><a href="">Item4</a></li>
+            </ul>
+        </div>    
     </div>
 
     <div class="title">Hello World</div>
