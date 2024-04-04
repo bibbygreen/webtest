@@ -1,0 +1,246 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#mobile-menu-open{
+    position: absolute;
+    
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    position: relative;
+    height: 30px;
+}
+
+.headline{
+    padding: 0 10px;
+    font-size: 20px;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+}
+
+.desktop-menu{
+    text-align: right;
+    display: flex;
+    height: 30px;
+    line-height: 30px;
+}
+
+.mobile-menu{
+    text-align: center;
+    display: none;
+}
+
+.desktop-menu a{
+    text-decoration: none;
+    padding: 0 10px;
+    display: block;
+}
+.mobile-menu li a{
+    text-decoration: none;
+    padding: 40px;
+    margin: 10px;
+    height: 20px;
+}
+.menu{
+    position: absolute;
+    right: 10px;
+}
+
+.title{
+    height: 250px;
+    font-size: 40px;
+    font-weight: bold;
+    background-color: #ccebff;
+    text-align: center;
+    line-height: 250px;
+    margin: 0 10px;
+}
+.SmallBox{
+    display: flex;
+    justify-content: center;
+}
+
+.SmallBox_object{
+    width: 380px;
+    height: 50px;
+    margin: 10px;
+    background-color: #dbf4fe;
+    font-size: 20px;
+    vertical-align: middle; 
+}
+
+.SmallBox_pic{
+    width: 80px;
+    height: 50px;
+    vertical-align: middle;
+}
+
+.BigBox{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;   
+    margin: auto;
+}
+
+.BigBox_object{
+    background: url("./pic/scene.jpg") no-repeat center center;
+    background-size: cover;
+    height: 240px;
+    width: 180px;
+    margin: auto;
+    position: relative;
+}
+
+/* .BigBox div:nth-child(6){
+    background: url("./pic/scene.jpg") no-repeat center center;
+    background-size: cover;
+    height: 300px;
+    width: 380px;
+    margin: 10px;
+} */
+
+.BigBox_object_title{
+    vertical-align: bottom;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    background: rgba(244, 0, 0, 0.5);
+    padding: 10px 0;
+    height: 20px;
+    width: 100%;
+    margin-top: 200px;
+}
+
+.BigBox_heart{
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
+
+@media (max-width:1920px) {
+    .BigBox{
+        width: 1200px;
+    }
+    .BigBox div:nth-child(5n-4){
+        background: url("./pic/scene.jpg") no-repeat center center;
+        background-size: cover;
+        height: 240px;
+        width: 380px;
+        margin: 10px;
+    }
+    /* .BigBox div:nth-child(6){
+        background: url("./pic/scene.jpg") no-repeat center center;
+        background-size: cover;
+        height: 240px;
+        width: 380px;
+        margin: 10px;
+    } */
+}
+
+@media (max-width:1200px) {
+    /*螢幕寬度小於1200px，套用這個區塊css*/
+    .SmallBox{
+        flex-wrap: wrap;
+    }
+
+    .SmallBox_object{
+        width: 45%;
+        flex-grow: 1;
+    }
+
+    .BigBox{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .BigBox_object{
+        background: url("./pic/scene.jpg") no-repeat center center;
+        background-size: cover;
+        height: 240px;
+        width: 20%;
+        margin: 10px;
+        flex-grow: 1;
+    }
+    .BigBox div:nth-child(5n-4){
+        background: url("./pic/scene.jpg") no-repeat center center;
+        background-size: cover;
+        height: 240px;
+        width: 20%;
+        margin: 10px;
+    } 
+
+    /* .BigBox div:nth-child(6){
+        background: url("./pic/scene.jpg") no-repeat center center;
+        background-size: cover;
+        height: 240px;
+        width: 20%;
+        margin: 10px;
+    }     */
+
+    .BigBox div:nth-child(9){
+        background: url("./pic/scene.jpg") no-repeat center center;
+        background-size: cover;
+        height: 240px;
+        width: 100%;
+        margin: 10px;
+    }
+}
+
+@media (max-width:600px) {
+    /*螢幕寬度小於600px，套用這個區塊css*/
+    .desktop-menu{
+        display: none;
+    } 
+    .mobile-menu{
+        display: block;
+        background-color: aquamarine;
+        width: 60%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    } 
+    .mobile-menu a{
+        font-size: 20px;
+        display: block;
+        padding: 20px;
+        text-decoration: none;
+        text-align: center;
+        margin: 10px;
+        height: 20px;
+    }
+    .mobile-menu nav{
+        right: -100%;
+        transition: .5s;
+    }
+
+    #mobile-menu-open:checked ~ .navbar .mobile-menu nav{
+        right: 0;
+    }
+    .SmallBox_object{
+        width: 90%;
+    }
+    .BigBox div:nth-child(5n-4){
+        background: url("./pic/scene.jpg") no-repeat center center;
+        background-size: cover;
+        height: 240px;
+        width: 100%;
+        margin: 10px;
+    }
+    .BigBox_object{
+        background: url("./pic/scene.jpg") no-repeat center center;
+        background-size: cover;
+        /* height: 300px; */
+        width: 100%;
+        height: 240px;
+        margin: 10px; 
+    } 
+}
