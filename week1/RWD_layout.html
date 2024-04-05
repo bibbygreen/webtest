@@ -8,9 +8,13 @@
         function toggleMenu(){
             var menu=document.getElementById("menu");
             menu.classList.toggle("hide");
-            // if(menu.style.display=="block"){
-            //     menu.style.display="none";
-            // }
+            var burger=document.getElementById("burger-icon");
+            burger.classList.toggle("hide");
+            var close=document.getElementById("close-icon");
+            close.classList.toggle("hide");
+
+
+
         }
     </script>
     <title>RWD實作練習</title>
@@ -25,9 +29,9 @@
             <a href="">Item4</a>
         </div>
         <div class="mobile-menu">
-            <img onclick="toggleMenu();" class="mobile-icon" src="./pic/menu.png" width="30" height="30" alt="">
-            
-            <ul id="menu">
+            <img onclick="toggleMenu();" id="burger-icon" class="mobile-icon" src="./pic/menu.png" width="30" height="30" alt="">
+            <img onclick="toggleMenu()" id="close-icon" class="hide" src="./pic/close.png" width="25" height="25" alt="">
+            <ul id="menu" class="hide">
                 <li><a href="">Item1</a></li>
                 <li><a href="">Item2</a></li>
                 <li><a href="">Item3</a></li>
