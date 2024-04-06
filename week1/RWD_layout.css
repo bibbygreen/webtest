@@ -153,7 +153,7 @@ li{
     }
     #menu{
         background-color: rgb(255, 255, 255);
-        width: 300px;
+        width: 250px;
         height: 500px; 
         z-index: 10;
         padding-bottom: 1000px;
@@ -187,5 +187,10 @@ li{
     .BigBox_object{
         width: 100%;
         margin: 10px; 
+    } 
+}
+@media (max-width:400px) {
+    #menu{
+        width: 180px;
     } 
 }
