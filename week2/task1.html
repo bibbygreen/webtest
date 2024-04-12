@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function findAndPrint(messages, currentStation){
+        GreenLine=["Xindian", "Xindian City Hall", "Qizhang", "Dapinglin", "Jingmei", "Wanlong", "Gongguan",
+            "Taipower Building", "Guting", "Chiang Kai-shek Memorial Hall", "Xiaonanmen", "Ximen", "Beimen",
+            "Zhongshan", "Songjiang Nanjing", "Nanjing Fuxing", "Taipei Arena", "Nanjing Sanmin","Songshan"];
+        // let currentStation = "Wanlong";
+        let current_station_index = GreenLine.indexOf(currentStation);
+        let Xiaobitan = "Xiaobitan";
+
+        let clean_messages = [];
+        for (let key in messages){
+            let x = messages[key];
+            x = x.replace(".","");
+            // console.log(x);
+            if (x.includes(Xiaobitan)){
+                clean_messages[key] = 3.5;
+            }
+            for (let green_station of GreenLine){
+                if (x.includes(green_station)){
+                    clean_messages[key] = GreenLine.indexOf(green_station);
+                }
+            } 
+        }
+        // console.log(clean_messages);
+
+        for (let key in clean_messages){
+            let msg_station_index = clean_messages[key];
+            let station_count = Math.abs(current_station_index - msg_station_index);
+            clean_messages[key] = station_count;
+        }
+
+        let clean_messages_key = Object.keys(clean_messages);
+        let clean_messages_value = Object.values(clean_messages);
+
+        let closest = Math.min(...clean_messages_value);
+        let closest_friend = clean_messages_key[clean_messages_value.indexOf(closest)];
+        return console.log(closest_friend);
+        }
+        const messages={
+            "Bob":"I'm at Ximen MRT station.",
+            "Mary":"I have a drink near Jingmei MRT station.",
+            "Copper":"I just saw a concert at Taipei Arena.",
+            "Leslie":"I'm at home near Xiaobitan station.",
+            "Vivian":"I'm at Xindian station waiting for you."
+        };
+        findAndPrint(messages, "Wanlong"); // print Mary
+        findAndPrint(messages, "Songshan"); // print Copper
+        findAndPrint(messages, "Qizhang"); // print Leslie
+        findAndPrint(messages, "Ximen"); // print Bob
+        findAndPrint(messages, "Xindian City Hall"); // print Vivian    
+    </script>
+</body>
+</html>
