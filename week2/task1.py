@@ -10,8 +10,10 @@ def find_and_print(messages, current_station):
     for key in messages:
         x = messages[key]
         x = x.strip(".")
-        if Xiaobitan in x:
-            clean_messages[key]=3.5  ###待優化
+        if Xiaobitan in x and current_station == "Dapinglin":
+            clean_messages[key]=1.5  ###待優化
+        else:
+            clean_messages[key]=2.5
         for green_station in GreenLine:
             if green_station in x:
                 clean_messages[key]=GreenLine.index(green_station)
@@ -45,3 +47,5 @@ find_and_print(messages, "Songshan") # print Copper
 find_and_print(messages, "Qizhang") # print Leslie
 find_and_print(messages, "Ximen") # print Bob
 find_and_print(messages, "Xindian City Hall") # print Vivian
+
+find_and_print(messages, "Dapinglin")

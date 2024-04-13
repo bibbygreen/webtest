@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function find(spaces, stat, n){
+            let seat_count = [];
+            let space_available = false;
+            let found_index = "";
+            let min_seat_count = Infinity;
+
+            for (let x=0; x < spaces.length; x++){
+                seat_count.push(spaces[x] - n);
+                if (stat[x] == 1){
+                    if (seat_count[x] == 0){
+                        found_index = x;
+                        space_available = true;
+                        break;
+                    }else if (seat_count[x] > 0 && seat_count[x] < min_seat_count){
+                        found_index = x;
+                        min_seat_count =seat_count[x]
+                        space_available = true;
+                    }
+                }
+            }
+            if (space_available){
+                console.log(found_index);
+            }else{
+                console.log("-1");
+            }
+        }
+
+    find([3, 1, 5, 4, 3, 2], [0, 1, 0, 1, 1, 1], 2); // print 5
+    find([1, 0, 5, 1, 3], [0, 1, 0, 1, 1], 4); // print -1
+    find([4, 6, 5, 8], [0, 1, 1, 1], 4); // print 2
+    </script>
+</body>
+</html>
+
