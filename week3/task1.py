@@ -5,8 +5,7 @@ url_1="https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assi
 request=req.Request(url_1)
 with req.urlopen(request) as response:
     data_1 = response.read().decode('utf-8')
-# response=requests.get(url_1)
-# spot_json=json.loads(response.text)
+
 spot_json=json.loads(data_1)
 spot_key_list=["stitle", "longitude", "latitude", "SERIAL_NO", "picURL"]
 stitle_list=[]
@@ -34,15 +33,11 @@ spot_dict = {key: value for key, value in zip(spot_key_list, [stitle_list, longi
 # print(spot_dict)
 
 ### 台北捷運站資料 ###
-
-request=req.Request(url_1)
- 
-
 url_2 = "https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment-2"
 request=req.Request(url_2)
 with req.urlopen(request) as response:
     data_2=response.read().decode('utf-8')
-    
+
 mrt_json =json.loads(data_2)
 mrt_key_list=["mrt", "SERIAL_NO", "district"]
 mrt_list=[]
@@ -84,14 +79,9 @@ with open("spot.csv", mode="w") as spot_file:
         # print(spot_dict["stitle"][k]+","+spot_dict["district"][k]+","+spot_dict["longitude"][k]+","+spot_dict["latitude"][k]+","+spot_dict["picURL"][k])
         k+=1
 # print(spot_dict["stitle"][k])
-# print(spot_dict["district"][k])
-# print(spot_dict["longitude"][k])
-# print(spot_dict["latitude"][k])
-# print(spot_dict["picURL"][k])
 # print(spot_dict)
 
 ### 透過景點SERIAL_NO找對應的捷運站，並存成mrt.csv ###
-
 mrt_spot_dict = {}
 
 for j, spot_serial in enumerate(spot_dict["SERIAL_NO"]):
