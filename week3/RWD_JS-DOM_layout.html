@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./RWD_JS-DOM_layout.css">
+    <script type="text/javascript">
+        function toggleMenu(){
+            var menu=document.getElementById("menu");
+            menu.classList.toggle("hide");
+            var burger=document.getElementById("burger-icon");
+            burger.classList.toggle("hide");
+            var close=document.getElementById("close-icon");
+            close.classList.toggle("hide");
+        }
+    </script>
+    <title>RWD+JS實作練習</title>
+
+</head>
+<body>
+    <div class="navbar">
+        <div class="headline">MyWebSite</div>
+        <div class="desktop-menu">
+            <a href="">Item1</a>
+            <a href="">Item2</a>
+            <a href="">Item3</a>
+            <a href="">Item4</a>
+        </div>
+        <div class="mobile-menu">
+            <img onclick="toggleMenu();" id="burger-icon" class="mobile-icon" src="./pic/menu.png" width="30" height="30" alt="">
+            <img onclick="toggleMenu()" id="close-icon" class="hide" src="./pic/close.png" width="25" height="25" alt="">
+            <ul id="menu" class="hide">
+                <li><a href="">Item1</a></li>
+                <li><a href="">Item2</a></li>
+                <li><a href="">Item3</a></li>
+                <li><a href="">Item4</a></li>
+            </ul>
+        </div>    
+    </div>
+    <div class="title">Popular Attractions in Taipei</div>
+    <div class="SmallBox">
+        <!-- <div class="SmallBox_object">
+            <img class="SmallBox_pic" src="./pic/scene.jpg" alt="">
+            <p class="SmallBox_object_title">Promotion 1</p>
+        </div> -->
+    </div>
+    <div class="BigBox">
+        <!-- <div class="BigBox_object" style="background-image: url(https://www.travel.taipei\/d_upload_ttn\/sceneadmin\/pic\/11000848.jpg); background-position: center; background-repeat: no-repeat;">
+            <p class="BigBox_object_title"></p>
+            <img class="BigBox_heart" src="./pic/heart.png" alt=""> -->
+        </div>
+        
+    <script>
+        function renderData(){
+            //利用 fetch 進行連線並取得資料
+            fetch("https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment-1")
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                var SmallBox = document.querySelector(".SmallBox");
+                var bigBox = document.querySelector(".BigBox");
+
+                for(var i=0; i<3;i++){
+                    var spot = data.data.results[i];
+                    // Create SmallBox_object div
+                    var SmallBox_object = document.createElement("div");
+                    SmallBox_object.className = "SmallBox_object";
+                    // Create img element for SmallBox
+                    var SmallBox_img = document.createElement("img");
+                    SmallBox_img.className = "SmallBox_pic";
+                    var url = spot.filelist.split("https://")[1];
+                    SmallBox_img.src = "https://"+ url;
+
+                    // Create p element for the title
+                    var SmallBox_title = document.createElement("p");
+                    SmallBox_title.className = "SmallBox_object_title";
+                    SmallBox_title.textContent = spot.stitle;
+
+                    SmallBox_object.appendChild(SmallBox_img);
+                    SmallBox_object.appendChild(SmallBox_title);
+
+                    SmallBox.appendChild(SmallBox_object);
+                }
+                // data.data.results.forEach(function(spot){
+                for(var i=3; i<13;i++){
+                    var spot = data.data.results[i];
+                    
+                    // Create BigBox_object div
+                    var BigBoxObject = document.createElement("div");
+                    BigBoxObject.className = "BigBox_object";
+
+                    var url = spot.filelist.split("https://")[1];
+                    url = "https://"+ url;
+
+                    // Set the background-image CSS
+                    BigBoxObject.style.backgroundImage = `url(${url})`;
+                    BigBoxObject.style.backgroundPosition = "center";
+                    BigBoxObject.style.backgroundRepeat = "no-repeat";
+
+                    // Create p element for the title
+                    var title = document.createElement("p");
+                    title.className = "BigBox_object_title";
+                    title.textContent = spot.stitle;
+
+                    // Create img element for heart
+                    var heart = document.createElement("img");
+                    heart.className = "BigBox_heart";
+                    heart.src = "./pic/heart.png";
+
+                    // Append img and title elements to BigBoxObject
+                    BigBoxObject.appendChild(title);
+                    BigBoxObject.appendChild(heart);
+
+                    // Append BigBoxObject to .BigBox
+                    bigBox.appendChild(BigBoxObject);
+                };
+            })
+        }
+        renderData();
+    </script>
+</body>
+</html>
