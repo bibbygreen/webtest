@@ -1,9 +1,13 @@
-import requests
+import urllib.request as req
 import json
 ### 台北景點資料 ###
 url_1="https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment-1"
-response=requests.get(url_1)
-spot_json=json.loads(response.text)
+request=req.Request(url_1)
+with req.urlopen(request) as response:
+    data_1 = response.read().decode('utf-8')
+# response=requests.get(url_1)
+# spot_json=json.loads(response.text)
+spot_json=json.loads(data_1)
 spot_key_list=["stitle", "longitude", "latitude", "SERIAL_NO", "picURL"]
 stitle_list=[]
 longitude_list=[]
@@ -30,10 +34,16 @@ spot_dict = {key: value for key, value in zip(spot_key_list, [stitle_list, longi
 # print(spot_dict)
 
 ### 台北捷運站資料 ###
-url_2 = "https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment-2"
-response=requests.get(url_2)
-mrt_json=json.loads(response.text)
 
+request=req.Request(url_1)
+ 
+
+url_2 = "https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment-2"
+request=req.Request(url_2)
+with req.urlopen(request) as response:
+    data_2=response.read().decode('utf-8')
+    
+mrt_json =json.loads(data_2)
 mrt_key_list=["mrt", "SERIAL_NO", "district"]
 mrt_list=[]
 SERIAL_NO_list=[]
