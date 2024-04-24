@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <title>歡迎光臨</title>
+</head>
+<body>
+    <h1>歡迎光臨，請輸入帳號密碼</h1>
+    <form action="/signin" method="post" class="form" id="loginForm">
+        <div><p>登入系統</p></div>
+        <div>
+            <label for="account">帳號</label>
+            <input type="text" id="account" name="account">
+        </div>
+        <div>
+            <label for="password">密碼</label>
+            <input type="password" id="password" name="password">
+        </div>
+        <div>
+            同意條款  <input type="checkbox" id="agree" >
+        </div>
+        <div>
+            <button type="submit" name="submit" style="padding: 5px 10px; font-size: 14px;" onclick="validateForm()">登入</button>
+        </div>
+    </form>
+
+    <hr>
+    <form action="/square/{{number}}" method="post">
+        <div class="square">
+            <p class="square_text">計算正整數的平方</p>
+            <label for="number">正整數</label>
+            <input type="text" id="number" name="number">
+            <div>
+                <button type="submit" name="calculate" class="calculate">計算</button>
+            </div>
+        </div>
+    </form>
+    <script>
+        function validateForm(){
+            if(!document.getElementById("agree").checked){
+                alert("請勾選同意條款");
+                event.preventDefault();
+            } 
+        }
+    </script>
+</body>
+</html>
