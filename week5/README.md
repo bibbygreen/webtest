@@ -95,7 +95,8 @@ FROM (
     FROM member 
     ORDER BY follower_count DESC 
     LIMIT 2
-) AS subquery;
+) AS top_two;
 ```
-![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/f4203e4c-9f09-4843-a09f-73bb1e8dca31)
+![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/d1945e7e-24ab-4e33-93c7-803ff3a49b99)
+
 
