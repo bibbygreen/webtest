@@ -1,4 +1,4 @@
-##Task 2: Create database and table in your MySQL server
+## Task 2: Create database and table in your MySQL server
 
 ● INSERT a new row to the member table where name, username and password must
 be set to test. INSERT additional 4 rows with arbitrary data.
@@ -62,7 +62,9 @@ UPDATE member SET name = 'test2' WHERE username = 'test';
 ```
 ![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/b633f2dc-72ee-4f16-a89a-cab7955beda8)
 
-##Task 4: SQL Aggregation Functions
+## Task 4: SQL Aggregation Functions
+before task4,
+UPDATE member SET follower_count = 100 WHERE username = 'test';
 
 ● SELECT how many rows from the member table.
 ```
@@ -74,13 +76,26 @@ SELECT COUNT(*) FROM member;
 ```
 SELECT SUM(follower_count) FROM member;
 ```
-![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/4651ed1d-cd5f-48e5-bfbb-cd1d135a2f19)
+![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/da570266-f5c5-40dc-ba66-e4063b6c6e1a)
+
 
 ● SELECT the average of follower_count of all the rows from the member table.
 ```
 SELECT AVG(follower_count) FROM member;
 ```
-![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/9a60684c-1b58-4dde-9646-6f1cf42449e6)
+![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/77861426-4c7e-445b-847d-2b2dda4d91a0)
+
 
 ● SELECT the average of follower_count of the first 2 rows, in descending order of
 follower_count, from the member table.
+```
+SELECT AVG(follower_count) 
+FROM (
+    SELECT follower_count 
+    FROM member 
+    ORDER BY follower_count DESC 
+    LIMIT 2
+) AS subquery;
+```
+![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/f4203e4c-9f09-4843-a09f-73bb1e8dca31)
+
