@@ -1,5 +1,28 @@
 ## Task 2: Create database and table in your MySQL server
 
+● Create a new database named website.
+```
+CREATE DATABASE website;
+```
+● Create a new table named member, in the website database
+```
+![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/0148d262-df96-469b-bf4a-c986c05ca908)
+
+
+CREATE TABLE member (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    follower_count INT UNSIGNED NOT NULL DEFAULT 0,
+    time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+```
+![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/467b6405-245a-47a8-9dbb-aa6cf00a1f86)
+
+
+## Task 3: SQL CRUD
+
 ● INSERT a new row to the member table where name, username and password must
 be set to test. INSERT additional 4 rows with arbitrary data.
 ```
@@ -106,3 +129,26 @@ FROM (
 ```
 ![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/a48311f3-d30d-45f6-ad2e-608f7f426b90)
 
+
+## Task 5: SQL JOIN
+
+● Create a new table named message, in the website database.
+```
+CREATE TABLE message (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    member_id BIGINT NOT NULL, FOREIGN KEY (member_id) REFERENCES member(id),
+    content VARCHAR(255) NOT NULL,
+    like_count INT UNSIGNED NOT NULL DEFAULT 0,
+    time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP);
+```
+![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/e73df384-564e-403f-a402-6cff716a88e1)
+
+
+● SELECT all messages, including sender names. We have to JOIN the member table
+to get that.
+● SELECT all messages, including sender names, where sender username equals to
+test. We have to JOIN the member table to filter and get that.
+● Use SELECT, SQL Aggregation Functions with JOIN statement, get the average like
+count of messages where sender username equals to test.
+● Use SELECT, SQL Aggregation Functions with JOIN statement, get the average like
+count of messages GROUP BY sender username.
