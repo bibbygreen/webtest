@@ -1,14 +1,14 @@
 ## Task 2: Create database and table in your MySQL server
 
 ● Create a new database named website.
-```
+```sql
 CREATE DATABASE website;
-```
-● Create a new table named member, in the website database
 ```
 ![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/0148d262-df96-469b-bf4a-c986c05ca908)
 
+● Create a new table named member, in the website database
 
+```sql
 CREATE TABLE member (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
@@ -25,14 +25,14 @@ CREATE TABLE member (
 
 ● INSERT a new row to the member table where name, username and password must
 be set to test. INSERT additional 4 rows with arbitrary data.
-```
+```sql
 INSERT INTO member (name, username, password) 
 VALUES ('test', 'test', 'test');
 ```
 ![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/fed7feb1-9ddb-4051-81f7-da8005d29e7f)
 
 
-```
+```sql
 INSERT INTO member (name, username, password, follower_count)
 VALUES
   ('Charles', 'lion', '123qwe', 10),
