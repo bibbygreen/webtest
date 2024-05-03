@@ -182,3 +182,13 @@ GROUP BY member.username;
 ```
 ![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/9ab0b5bf-4930-4d27-a5f9-8d52d278b10e)
 
+
+> mysqldump — A Database Backup Program
+```powershell
+mysqldump [options] > dump.sql
+```
+
+Use the --result-file option, which creates the output in ASCII format
+```powershell
+mysqldump [options] --result-file=dump.sql
+```
