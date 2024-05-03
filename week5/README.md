@@ -24,7 +24,7 @@ CREATE TABLE member (
 
 ## Task 3: SQL CRUD
 
-3.1 INSERT a new row to the member table where name, username and password mustbe set to test. INSERT additional 4 rows with arbitrary data.
+> 3.1 INSERT a new row to the member table where name, username and password mustbe set to test. INSERT additional 4 rows with arbitrary data.
 ```sql
 INSERT INTO member (name, username, password) 
 VALUES ('test', 'test', 'test');
@@ -43,49 +43,49 @@ VALUES
 ![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/013b6987-dbcd-4fab-b7e0-38f2ef6566a7)
 
 
-3.2 SELECT all rows from the member table.
+> 3.2 SELECT all rows from the member table.
 ```sql
 SELECT * FROM member;
 ```
 ![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/eccb539a-8e51-45b4-8572-4ae61c87a00a)
 
 
-3.3 SELECT all rows from the member table, in descending order of time.
+> 3.3 SELECT all rows from the member table, in descending order of time.
 ```sql
 SELECT * FROM member ORDER BY time DESC;
 ```
 ![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/e7ac2a66-2f18-4d35-aadb-1f512aba35be)
 
 
-3.4 SELECT total 3 rows, second to fourth, from the member table, in descending order of time. Note: it does not mean SELECT rows where id are 2, 3, or 4.
+> 3.4 SELECT total 3 rows, second to fourth, from the member table, in descending order of time. Note: it does not mean SELECT rows where id are 2, 3, or 4.
 ```sql
 SELECT * FROM member ORDER BY time DESC LIMIT 3 OFFSET 1;
 ```
 ![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/9a0f9475-bb73-46ea-950a-648b9bebeea6)
 
 
-3.5 SELECT rows where username equals to test.
+> 3.5 SELECT rows where username equals to test.
 ```sql
 SELECT * FROM member WHERE username = 'test';
 ```
 ![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/1fe89ef3-dc0c-415b-8306-fd30c730c904)
 
 
-3.6 SELECT rows where name includes the es keyword.
+> 3.6 SELECT rows where name includes the es keyword.
 ```sql
 SELECT * FROM member WHERE name LIKE '%es%';
 ```
 ![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/31c6f982-0c78-4c24-93cf-4333394f5630)
 
 
-3.7 SELECT rows where both username and password equal to test.
+> 3.7 SELECT rows where both username and password equal to test.
 ```sql
 SELECT * FROM member WHERE username = 'test' AND password = 'test';
 ```
 ![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/7b1c6570-2d45-4dd4-830b-545859b3218f)
 
 
-3.8 UPDATE data in name column to test2 where username equals to test.
+> 3.8 UPDATE data in name column to test2 where username equals to test.
 ```sql
 UPDATE member SET name = 'test2' WHERE username = 'test';
 ```
@@ -94,28 +94,28 @@ UPDATE member SET name = 'test2' WHERE username = 'test';
 
 ## Task 4: SQL Aggregation Functions
 
-4.1 SELECT how many rows from the member table.
+> 4.1 SELECT how many rows from the member table.
 ```sql
 SELECT COUNT(*) FROM member;
 ```
 ![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/ff4fcad3-7201-421f-881f-8c5f6d978285)
 
 
-4.2 SELECT the sum of follower_count of all the rows from the member table.
+> 4.2 SELECT the sum of follower_count of all the rows from the member table.
 ```sql
 SELECT SUM(follower_count) FROM member;
 ```
 ![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/0b064547-426a-47d8-ac55-84b0a717b853)
 
 
-4.3 SELECT the average of follower_count of all the rows from the member table.
+> 4.3 SELECT the average of follower_count of all the rows from the member table.
 ```sql
 SELECT AVG(follower_count) FROM member;
 ```
 ![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/a99dd5e5-13a9-4427-a542-c21247016c33)
 
 
-4.4 SELECT the average of follower_count of the first 2 rows, in descending order of follower_count, from the member table.
+> 4.4 SELECT the average of follower_count of the first 2 rows, in descending order of follower_count, from the member table.
 ```sql
 SELECT AVG(follower_count) 
 FROM (
