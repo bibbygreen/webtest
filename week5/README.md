@@ -1,13 +1,13 @@
 ## Task 2: Create database and table in your MySQL server
 
-2.1 Create a new database named website.
+> 2.1 Create a new database named website.
 ```sql
 CREATE DATABASE website;
 ```
 ![image](https://github.com/bibbygreen/wehelp_5th/assets/54356660/0148d262-df96-469b-bf4a-c986c05ca908)
 
 
-2.2 Create a new table named member, in the website database
+> 2.2 Create a new table named member, in the website database
 
 ```sql
 CREATE TABLE member (
