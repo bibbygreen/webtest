@@ -20,7 +20,7 @@
             <input type="text" id="content" name="content">
         </div>
         <div>
-            <button type="submit" name="submit" style="padding: 5px 10px; font-size: 14px;">送出</button>
+            <button type="submit" name="submit" style="padding: 5px 10px; font-size: 14px;" onclick="validateForm()">送出</button>
         </div>
     </form>
     <hr>
@@ -33,6 +33,14 @@
             <p class="text">No messages to display.</p>
         {% endif %}
     </div>
-
+    <script>
+        function validateForm() {
+            var name = document.getElementById("content").value;
+            if (name.trim() === "") {
+                alert("您尚未填寫留言哦");
+                event.preventDefault();
+            }
+        }        
+    </script>
 </body>
 </html>
