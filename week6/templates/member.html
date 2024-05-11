@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <title>歡迎光臨</title>
+</head>
+<body>
+    <h1>歡迎光臨，這是會員頁</h1>
+
+    <div class="text">{{ name }}，歡迎登入系統</div>
+    <a href="/signout"><p class="text">登出系統</p></a>
+
+    <hr>
+    <h3 style="text-align: center; padding-top: 20px; font-size: 20px;">快來留言吧</h3>
+    <form action="/createMessage" method="POST" class="form">
+        <div>
+            <label for="account">內容</label>
+            <input type="text" id="content" name="content">
+        </div>
+        <div>
+            <button type="submit" name="submit" style="padding: 5px 10px; font-size: 14px;">送出</button>
+        </div>
+    </form>
+    <hr>
+    <div>
+        {% if messages_list %}
+            {% for each_line in messages_list %}
+                <p class="text">{{ each_line['name'] }}：{{ each_line['content'] }}</p>
+            {% endfor %}
+        {% else %}
+            <p class="text">No messages to display.</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>

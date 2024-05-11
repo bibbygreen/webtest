@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <title>歡迎光臨</title>
+</head>
+<body>
+    <h1>歡迎光臨，請註冊登入系統</h1>
+    <form action="/signup" method="POST" class="form">
+        <div><p>註冊帳號</p></div>
+        <div>
+            <label for="account">姓名</label>
+            <input type="text" id="signupName" name="name">
+        </div>
+        <div>
+            <label for="account">帳號</label>
+            <input type="text" id="signupUsername" name="username">
+        </div>
+        <div>
+            <label for="password">密碼</label>
+            <input type="password" id="signupPassword" name="password">
+        </div>
+
+        <div>
+            <button type="submit" name="submit" style="padding: 5px 10px; font-size: 14px;" onclick="validateForm()">註冊</button>
+        </div>
+    </form>
+    <hr>
+    <form action="/signin" method="POST" class="form" id="loginForm">
+        <div><p>登入系統</p></div>
+        <div>
+            <label for="account">帳號</label>
+            <input type="text" id="account" name="username">
+        </div>
+        <div>
+            <label for="password">密碼</label>
+            <input type="password" id="password" name="password">
+        </div>
+        <div>
+            <button type="submit" name="submit" style="padding: 5px 10px; font-size: 14px;">登入</button>
+        </div>
+    </form>
+    <script>
+        function validateForm() {
+            var name = document.getElementById("signupName").value;
+            var username = document.getElementById("signupUsername").value;
+            var password = document.getElementById("signupPassword").value;
+
+            if (name.trim() === "" || username.trim() === "" || password.trim() === "") {
+                alert("請填寫所有欄位");
+                event.preventDefault();
+            }
+        }        
+    </script>
+</body>
+</html>
