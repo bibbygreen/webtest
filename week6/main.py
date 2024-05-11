@@ -24,7 +24,6 @@ usernameInDB=[]
 passwordInDB=[]
 memberidInDB=[]
 nameInDB=[]
-
 cursor.execute("SELECT * FROM member;")
 data=cursor.fetchall()
 con.commit() #確認執行
@@ -33,6 +32,7 @@ for row in data:
     nameInDB.append(row[1])
     usernameInDB.append(row[2])
     passwordInDB.append(row[3])
+
 
 @app.get("/", response_class=HTMLResponse)
 async def show_form(request: Request):
@@ -45,6 +45,13 @@ async def signup(request: Request, name: str = Form(None), username: str = Form(
         new_member=(name, username, password)
         cursor.execute(add_new_member, new_member)
         con.commit() #確認執行
+        # Update lists with new member information
+        cursor.execute("SELECT * FROM member WHERE username = %s", (username,))
+        new_member_data = cursor.fetchone()
+        memberidInDB.append(new_member_data[0])
+        nameInDB.append(new_member_data[1])
+        usernameInDB.append(new_member_data[2])
+        passwordInDB.append(new_member_data[3])
         return RedirectResponse(url='/', status_code=303)
     else:
         message = "該帳號已被註冊，請重新輸入"
