@@ -123,8 +123,6 @@ async def createMessage(request: Request, content: str = Form(None)):
 
 @app.get("/api/member", response_class=HTMLResponse)
 async def find_member(request: Request, username: str = Query(...)):
-    print(username)
-
     command = "SELECT * FROM member WHERE username = %s"
     check_member = (username, )
     cursor.execute(command, check_member)
@@ -138,8 +136,8 @@ async def find_member(request: Request, username: str = Query(...)):
 @app.patch("/api/member", response_class=HTMLResponse)
 async def update_member(request: Request, update_data: UpdateNameData):
     username = request.session.get("USERNAME")
-    print(username)
-    print(update_data)
+    # print(username)
+    # print(update_data)
     if not username:
         return {"error": True}
     else:
