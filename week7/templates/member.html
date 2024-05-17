@@ -45,9 +45,9 @@
         <button type="submit" style="padding: 5px 10px; font-size: 14px;" onclick="findMemberName()">查詢</button>
     </form> -->
     <div><h3 style="text-align: center; padding-top: 20px; font-size: 20px;">查詢會員姓名</h3></div>
-        <form class="form">
+        <form class="form" onsubmit="event.preventDefault(); findMemberName();">
             <input type="text" id="username" name="username">
-            <button type="submit" style="padding: 5px 10px; font-size: 14px;" onclick="findMemberName()">查詢</button>
+            <button type="submit" style="padding: 5px 10px; font-size: 14px;">查詢</button>
         </form>
     <div class="text" id="find-member-result"></div>
 
@@ -68,20 +68,24 @@
         }
         function findMemberName() {
             let username = document.getElementById("username").value;
-            fetch("/api/member")
-            .then(function (response) {
-            console.log(response);
-            return response.json();
+            let url = `/api/member?username=${encodeURIComponent(username)}`;
+            // let url = "/api/member";
+            fetch(url, {method: 'GET'})
+                .then(function (response) {
+                console.log(response);
+                return response.json();
             })
             .then(function (result) {
                 const findMemberResult = document.getElementById("find-member-result");
-                console.log(result)
                 if (result.data != null) {
                     findMemberResult.textContent=`${result.data.name} (${result.data.username})`;                   
                 } else {
                     findMemberResult.textContent="無此會員";
                 }
             })
+            .catch(function (error) {
+            console.error('Error:', error);
+            });
         }
 
         function renewName() {
@@ -112,7 +116,6 @@
                 }
                 });
             }
-
 
         function deleteMessage(messageId) {
             console.log('Message ID to delete:', messageId);

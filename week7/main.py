@@ -122,7 +122,9 @@ async def createMessage(request: Request, content: str = Form(None)):
 #         raise HTTPException(status_code=500, detail="Internal server error")
 
 @app.get("/api/member", response_class=HTMLResponse)
-async def find_member(username: str = Query(None)):
+async def find_member(request: Request, username: str = Query(...)):
+    print(username)
+
     command = "SELECT * FROM member WHERE username = %s"
     check_member = (username, )
     cursor.execute(command, check_member)
