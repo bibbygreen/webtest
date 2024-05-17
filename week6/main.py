@@ -48,8 +48,8 @@ async def signin(request: Request, username: str = Form(None), password: str = F
     check_member = (username, )
     cursor.execute(select_username_command, check_member)
     result=cursor.fetchall()
-    if username in result[0][2]: 
-        if password in result[0][3]:
+    if username == result[0][2]: 
+        if password == result[0][3]:
             request.session["SIGNED-IN"] = True
             request.session["MEMBER_ID"] = result[0][0]
             request.session["NAME"] = result[0][1]
