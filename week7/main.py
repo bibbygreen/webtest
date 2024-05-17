@@ -103,23 +103,35 @@ async def createMessage(request: Request, content: str = Form(None)):
     con.commit() #確認執行
     return RedirectResponse(url='/member', status_code=303)
 
-@app.get("/api/member", response_class=JSONResponse)
-async def find_member(request: Request, username: str = Query(None)):
-    try:
-        command = "SELECT * FROM member WHERE username = %s"
-        check_member = (username, )
-        cursor.execute(command, check_member)
-        user_result = cursor.fetchone()
-        print(user_result)
-        if user_result:
-            # return {"data": {'id': user_result[0], "name": user_result[1], 'username': user_result[2]}}
-            return JSONResponse(content={"data": {'id': user_result[0], "name": user_result[1], 'username': user_result[2]}})
-        else:
-            # return {"data": None}
-            return JSONResponse(content={"data": None})
-    except mysql.connector.Error as err:
-        print(f"Error accessing database: {err}")
-        raise HTTPException(status_code=500, detail="Internal server error")
+# @app.get("/api/member", response_class=JSONResponse)
+# async def find_member(request: Request, username: str = Query(None)):
+#     try:
+#         command = "SELECT * FROM member WHERE username = %s"
+#         check_member = (username, )
+#         cursor.execute(command, check_member)
+#         user_result = cursor.fetchone()
+#         print(user_result)
+#         if user_result:
+#             # return {"data": {'id': user_result[0], "name": user_result[1], 'username': user_result[2]}}
+#             return JSONResponse(content={"data": {'id': user_result[0], "name": user_result[1], 'username': user_result[2]}})
+#         else:
+#             # return {"data": None}
+#             return JSONResponse(content={"data": None})
+#     except mysql.connector.Error as err:
+#         print(f"Error accessing database: {err}")
+#         raise HTTPException(status_code=500, detail="Internal server error")
+
+@app.get("/api/member", response_class=HTMLResponse)
+async def find_member(username: str = Query(None)):
+    command = "SELECT * FROM member WHERE username = %s"
+    check_member = (username, )
+    cursor.execute(command, check_member)
+    user_result = cursor.fetchone()
+    if user_result:
+        return JSONResponse(content={"data": {'id': user_result[0], "name": user_result[1], 'username': user_result[2]}})
+    else:
+        return JSONResponse(content={"data": None})
+
 
 @app.patch("/api/member", response_class=HTMLResponse)
 async def update_member(request: Request, update_data: UpdateNameData):
