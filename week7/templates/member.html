@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <title>歡迎光臨</title>
+</head>
+<body>
+    <h1>歡迎光臨，這是會員頁</h1>
+
+    <div class="text" id="title-name">{{ name }}，歡迎登入系統</div>
+    <a href="/signout"><p class="text">登出系統</p></a>
+
+    <hr>
+    <h3 style="text-align: center; padding-top: 20px; font-size: 20px;">快來留言吧</h3>
+    <form action="/createMessage" method="POST" class="form">
+        <div>
+            <label for="account">內容</label>
+            <input type="text" id="content" name="content">
+        </div>
+        <div>
+            <button type="submit" name="submit" style="padding: 5px 10px; font-size: 14px;" onclick="validateForm()">送出</button>
+        </div>
+    </form>
+    <hr>
+    <div>
+        {% if messages_list %}
+            {% for each_line in messages_list %}
+            <div class="messageContainer" id="{{ each_line['message_id'] }}">
+                <p class="message_text">{{ each_line['name'] }}：{{ each_line['content'] }}</p>
+                <form id="deleteForm_{{ each_line['message_id'] }}" style="width: 30px;">
+                    <input type="hidden" name="message_id" value="{{ each_line['message_id'] }}">
+                    <button type="submit" name="del_btn">X</button>
+                </form>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p class="text">No messages to display.</p>
+        {% endif %}
+    </div>
+    <div><h3 style="text-align: center; padding-top: 20px; font-size: 20px;">查詢會員姓名</h3></div>
+        <form action="/api/member" method="GET" class="form">
+            <input type="text" id="username" name="username">
+            <button type="submit" style="padding: 5px 10px; font-size: 14px;" onclick="findMemberName()">查詢</button>
+        </form>
+    <div class="text" id="find-member-result"></div>
+
+    <div><h3 style="text-align: center; padding-top: 20px; font-size: 20px;">更新我的姓名</h3></div>
+    <form id="updateNameForm" class="form">
+        <input type="text" id="updateName" name="updateName">
+        <button type="button" style="padding: 5px 10px; font-size: 14px;" onclick="renewName()">更新</button>
+    </form>
+    <div class="text" id="updateName-result"></div>
+
+    <script>
+        function validateForm() {
+            var name = document.getElementById("content").value;
+            if (name.trim() === "") {
+                alert("您尚未填寫留言哦");
+                event.preventDefault();
+            }
+        }
+        function findMemberName() {
+            let username = document.getElementById("username").value;
+            let url = "/api/member?username="+username;
+            fetch(url, {method: 'GET'})
+                .then(function (response) {
+                console.log(response);
+                return response.json();
+            })
+            .then(function (result) {
+                const findMemberResult = document.getElementById("find-member-result");
+                if (result.data != null) {
+                    findMemberResult.textContent=`${result.data.name} (${result.data.username})`;                   
+                } else {
+                    findMemberResult.textContent="無此會員";
+                }
+            })
+            .catch(function (error) {
+            console.error('Error:', error);
+            });
+        }
+
+        function renewName() {
+            let name=document.getElementById("updateName").value;
+            let titleName=document.getElementById("title-name");
+            let updateNameResult=document.getElementById("updateName-result");
+            //向後端發送 requset
+            fetch("/api/member",{
+                method:"PATCH",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body: JSON.stringify({name:name})
+            })
+            //後端傳回response
+            .then(function (response) {
+                return response.json();
+            })
+            //取得response body
+            .then(function (result) {
+                if(result.ok){
+                    //if the status code is 200 (OK), 201 (Created), etc.
+                    updateNameResult.textContent="更新成功";
+                    titleName.textContent=name +"，歡迎登入系統";
+                }else{
+                    //if the status code is 400 (Bad Request), 404 (Not Found), 500 
+                    updateNameResult.textContent="更新失敗";
+                }
+                });
+            }
+
+
+        function deleteMessage(messageId) {
+            console.log('Message ID to delete:', messageId);
+            if (confirm("Are you sure you want to delete this message?")) {
+                const form = document.getElementById(`deleteForm_${messageId}`);
+                const messageIdToDelete = form.querySelector('input[name="message_id"]').value;
+
+                fetch('/deleteMessage', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message_id: messageIdToDelete })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.reload();
+                    } else {
+                        throw new Error('Failed to delete message');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Handle error here
+                });
+            }
+        }
+    </script>
+</body>
+</html>

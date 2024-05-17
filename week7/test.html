@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const url = "https://randomuser.me/api/";
+        fetch(url, {method: 'GET'})
+            .then(function(response) {
+            // 這裡會得到一個 ReadableStream 的物件
+            console.log(response);
+            console.log("loooooooooooooooo")
+            // 可以透過 blob(), json(), text() 轉成可用的資訊
+            return response.json();
+            })
+            .then(function(jsonData) {
+            console.log(jsonData);
+            console.log("loooooooooooooooo")
+            })
+            .catch(function(error) {
+                // do something if error happens
+                console.log('錯誤:', error);
+            })
+        
+            
+    </script>
+</body>
+</html>

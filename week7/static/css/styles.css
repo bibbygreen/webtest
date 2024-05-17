@@ -1,0 +1,53 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+h1 {
+    color: white;
+    background-color: rgb(180, 83, 13);
+    font-size: 28px;
+    padding: 20px;
+    text-align: center;
+}
+.form{
+    text-align: center;
+    padding: 15px;
+    font-size: 20px;
+
+}
+.form div{
+    padding: 5px;
+}
+.form div p{
+    font-weight: bold;
+}
+
+.text{
+    font-size: 20px;
+    text-align: center;
+    padding: 10px;
+}
+input{
+    height: 25px;
+}
+.messageContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.message_text{
+    font-size: 20px;
+    text-align: center;
+    padding: 10px;
+    width: 300px;
+
+}
+.del_btn{
+    padding: 3px 5px; 
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    width: 30px; /* Adjust the width of the button as needed */
+    height: 30px; /* Adjust the height of the button as needed */
+}
+
